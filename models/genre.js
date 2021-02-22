@@ -1,22 +1,23 @@
 import {
     Sequelize,
-    Model,
-    DataTypes
+    Model
 } from "sequelize"
 
 class Genre extends Model {}
 
 Genre.init({
     id: {
-        type: DataTypes.UUID,
+        type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
     },
     name: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false,
         unique: true
     }
 }, {
-    tableName: "genre"
+    tableName: "genre",
+    timestamps: true,
+    paranoid: true
 })

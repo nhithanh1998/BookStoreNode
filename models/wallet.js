@@ -13,5 +13,7 @@ Wallet.init({
         primaryKey: true
     }
 }, {
-    tableName: "wallet"
+    tableName: "wallet",
+    timestamps: true,
+    paranoid: true
 })

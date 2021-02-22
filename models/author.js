@@ -1,30 +1,40 @@
 import {
     Sequelize,
-    Model,
-    DataTypes
+    Model
 } from "sequelize"
 
 class Author extends Model {}
 
 Author.init({
     id: {
-        type: DataTypes.UUID,
+        type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         fields: "id"
     },
     name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true,
         field: "name"
     },
-    createdAt: {
-
+    nationality: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: "nationality"
     },
-    updatedAt: {
-
+    gender: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+        field: "gender"
+    },
+    biography: {
+        type: Sequelize.STRING,
+        defaultValue: "No biography describe!",
+        field: "biography"
     }
 }, {
-    tableName: "author"
+    tableName: "author",
+    timestamps: true,
+    paranoid: true
 })

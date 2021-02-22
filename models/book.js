@@ -1,17 +1,22 @@
-import {
-    Sequelize,
-    Model,
-    DataTypes
-} from "sequelize"
+import {Sequelize, Model} from "sequelize"
 
 export class Book extends Model {}
 
 Book.init({
-    id: {
-        type: DataTypes.UUID,
-        default: Sequelize.UUIDV4,
-        primaryKey: true
-    }
+  id: {
+    type: Sequelize.UUID,
+    default: Sequelize.UUIDV4,
+    primaryKey: true,
+    field: "id"
+  },
+  name: {
+      type: Sequelize.String,
+      unique: true,
+      allowNull: false,
+      field: "name"
+  }
 }, {
-    tableName: "book"
+  tableName: "book",
+  timestamps: true,
+  paranoid: true
 })
