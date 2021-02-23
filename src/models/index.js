@@ -1,3 +1,4 @@
+export * from "./db"
 export * from "./author"
 export * from "./book"
 export * from "./genre"

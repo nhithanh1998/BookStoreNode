@@ -1,12 +1,10 @@
-import {
-  Sequelize,
-  Model
-} from "sequelize"
+import {Sequelize, Model} from "sequelize"
+
+import {Author} from "."
 
 export class Book extends Model {}
 
 export function initBookModel(sequelize) {
-
   Book.init({
     id: {
       type: Sequelize.UUID,
@@ -15,7 +13,7 @@ export function initBookModel(sequelize) {
       field: "id"
     },
     name: {
-      type: Sequelize.String,
+      type: Sequelize.STRING,
       unique: true,
       allowNull: false,
       field: "name"
@@ -26,4 +24,9 @@ export function initBookModel(sequelize) {
     timestamps: true,
     paranoid: true
   })
+  Book.belongsTo(Author, {
+    foreignKey: "author_id",
+    targetKey: "id"
+  })
 }
+
