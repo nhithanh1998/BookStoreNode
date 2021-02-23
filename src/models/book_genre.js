@@ -31,3 +31,4 @@ export function initBookGenreModel(sequelize) {
       timestamps: true
    })
 }
+

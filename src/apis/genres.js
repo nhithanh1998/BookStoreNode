@@ -1,11 +1,10 @@
-import {
-    Router
-} from 'express'
+import { Router } from 'express'
+import { getGenres } from "./hanles/genres"
 
-export let genresRouter = new Router()
+export const genresRouter = new Router()
 
-genresRouter.get('/', (req, res) => {
-    res.send({
-        "msg": "ping"
-    }, 200)
+genresRouter.get('/', getGenres)
+
+genresRouter.get('/:id', (req, res) => {
+   res.send({ id: req.params.id })
 })

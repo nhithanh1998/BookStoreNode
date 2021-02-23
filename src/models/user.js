@@ -42,6 +42,8 @@ export function initUserModel(sequelize) {
       timestamps: true,
       paranoid: true
    })
-   // Association
+}
+
+export function establishUserAssociations() {
    User.hasOne(Wallet)
 }

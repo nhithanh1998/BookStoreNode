@@ -1,11 +1,12 @@
 import { Sequelize } from "sequelize"
 
-import { initAuthorModel } from "./author"
-import { initBookModel } from "./book"
-import { initGenreModel } from "./genre"
-import { initPublisherModel } from "./publisher"
-import { initUserModel } from "./user"
-import { initWalletModel } from "./wallet"
+import { initAuthorModel, establishAuthorAssociations } from "./author"
+import { initBookModel, establishBookAssociations } from "./book"
+import { initGenreModel, establishGenreAssociations } from "./genre"
+import { initPublisherModel, establishPublisherAssociations } from "./publisher"
+import { initUserModel, establishUserAssociations } from "./user"
+import { initWalletModel, establishWalletAssociations } from "./wallet"
+import { initBookGenreModel } from "./book_genre"
 
 export function initSequelize() {
    console.log("start init")
@@ -14,12 +15,25 @@ export function initSequelize() {
       host: 'localhost',
       dialect: 'postgres'
    })
+
+   // init tables
    initAuthorModel(sequelize)
    initBookModel(sequelize)
    initGenreModel(sequelize)
    initPublisherModel(sequelize)
    initUserModel(sequelize)
    initWalletModel(sequelize)
-   sequelize.sync({ force: true });
-   console.log("sync complete")
+   initBookGenreModel(sequelize)
+
+   // define table associations
+   establishAuthorAssociations()
+   establishBookAssociations()
+   establishGenreAssociations()
+   establishPublisherAssociations()
+   establishUserAssociations()
+   establishWalletAssociations
+
+   // sync all models
+   // sequelize.sync({ force: true });
+   // console.log("sync complete")
 }

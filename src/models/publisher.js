@@ -22,7 +22,9 @@ export function initPublisherModel(sequelize) {
       timestamps: true,
       paranoid: true
    })
-   // Association
+}
+
+export function establishPublisherAssociations() {
    Publisher.hasMany(Book, {
       foreignKey: "publisher_id"
    })

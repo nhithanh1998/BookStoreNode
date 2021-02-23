@@ -1,7 +1,7 @@
 import { Sequelize, Model } from "sequelize"
 import { Book, BookGenre } from "."
 
-class Genre extends Model {}
+export class Genre extends Model {}
 
 export function initGenreModel(sequelize) {
    Genre.init({
@@ -20,7 +20,9 @@ export function initGenreModel(sequelize) {
       tableName: "genre",
       timestamps: true,
       paranoid: true
-   })
-   // Association
+   })   
+}
+
+export function establishGenreAssociations() {
    Genre.belongsToMany(Book, { through: BookGenre })
 }

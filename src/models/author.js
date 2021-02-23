@@ -39,6 +39,8 @@ export function initAuthorModel(sequelize) {
       timestamps: true,
       paranoid: true
    })
-   // Association
+}
+
+export function establishAuthorAssociations() {
    Author.hasMany(Book, { foreignKey: "author_id" })
 }

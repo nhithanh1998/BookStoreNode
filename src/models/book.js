@@ -24,7 +24,9 @@ export function initBookModel(sequelize) {
       timestamps: true,
       paranoid: true
    })
-   // Association
+}
+
+export function establishBookAssociations() {
    Book.belongsTo(Author, {
       foreignKey: "author_id",
       targetKey: "id"

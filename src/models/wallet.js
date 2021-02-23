@@ -17,7 +17,9 @@ export function initWalletModel(sequelize) {
       timestamps: true,
       paranoid: true
    })
-   // Association
+}
+
+export function establishWalletAssociations() {
    Wallet.belongsTo(User, {
       foreignKey: "user_id"
    })
