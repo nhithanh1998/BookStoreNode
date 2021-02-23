@@ -1,20 +1,25 @@
-import {Sequelize} from "sequelize"
+import { Sequelize } from "sequelize"
 
-import * as models from "."
+import { initAuthorModel } from "./author"
+import { initBookModel } from "./book"
+import { initGenreModel } from "./genre"
+import { initPublisherModel } from "./publisher"
+import { initUserModel } from "./user"
+import { initWalletModel } from "./wallet"
 
 export function initSequelize() {
-    console.log("start init")
+   console.log("start init")
 
-    var sequelize = new Sequelize('bookstore', 'postgres', 'nhatthanh123', {
-        host: 'localhost',
-        dialect: 'postgres'
-    })
-    models.initAuthorModel(sequelize)
-    models.initBookModel(sequelize)
-    models.initGenreModel(sequelize)
-    models.initPublisherModel(sequelize)
-    models.initUserModel(sequelize)
-    models.initWalletModel(sequelize)
-    sequelize.sync({ force: true });
-    console.log("sync complete")
+   var sequelize = new Sequelize('bookstore', 'postgres', 'nhatthanh123', {
+      host: 'localhost',
+      dialect: 'postgres'
+   })
+   initAuthorModel(sequelize)
+   initBookModel(sequelize)
+   initGenreModel(sequelize)
+   initPublisherModel(sequelize)
+   initUserModel(sequelize)
+   initWalletModel(sequelize)
+   sequelize.sync({ force: true });
+   console.log("sync complete")
 }
