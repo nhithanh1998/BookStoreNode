@@ -1,10 +1,11 @@
 import { Router } from 'express'
-import { getGenres } from "./hanles/genres"
+
+import * as genresHandling from "./handling/genres"
 
 export const genresRouter = new Router()
 
-genresRouter.get('/', getGenres)
+genresRouter.get("/", genresHandling.getGenres)
 
-genresRouter.get('/:id', (req, res) => {
-   res.send({ id: req.params.id })
-})
+genresRouter.get("/:id", genresHandling.getGenre)
+
+genresRouter.post("/", genresHandling.createGenre)
