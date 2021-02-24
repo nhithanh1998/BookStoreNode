@@ -1,10 +1,11 @@
 import { Router } from 'express'
 
 import * as booksHandling from "./handling/books"
+import * as middlewares from "./middlewares"
 
 export const booksRouter = new Router()
 
-booksRouter.get("/", booksHandling.getBooks)
+booksRouter.get("/", middlewares.modifyQueryParamsForGetMultipleInstances, booksHandling.getBooks)
 
 booksRouter.get("/:id", booksHandling.getBook)
 
