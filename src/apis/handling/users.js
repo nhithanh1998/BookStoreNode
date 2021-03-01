@@ -9,7 +9,7 @@ export function getUser(req, res) {
 }
 
 export function createUser(req, res) {
-
+    
 }
 
 export function updateUser(req, res) {

@@ -1,7 +1,12 @@
 import { Sequelize, Model } from "sequelize"
+
 import { Book, BookGenre } from "."
 
-export class Genre extends Model {}
+export class Genre extends Model {
+   toJSON() {
+
+   }
+}
 
 export function initGenreModel(sequelize) {
    Genre.init({

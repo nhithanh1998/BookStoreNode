@@ -1,8 +1,13 @@
+import _ from "lodash"
+
 import { Genre } from "../../models"
+import { standardizeResponseJSON } from "../../utils"
 
 export async function getGenres(_, res) {
-   const genres = await Genre.findAll()
-   return res.send(genres)
+   const genres = await Genre.findAll(req.query)
+   return res.send({
+      data: standardizeResponseJSON("genre", genres)
+   }, 200)
 }
 
 export async function getGenre(req, res) {
@@ -14,13 +19,13 @@ export async function getGenre(req, res) {
       }
    })
    return res.send({
-      data: genre
+      data: standardizeResponseJSON("genre", genre)
    }, 200)
 }
 
 export async function createGenre(req, res) {
-   const genre = req.body.data.genre
-   await Genre.create({ name: genre.name })
+   const genreName = _.get(req.body, "data.attributes.name")
+   await Genre.create({ name: genreName })
    res.send({
       msg: "create Success"
    }, 201)
@@ -31,5 +36,5 @@ export function updateGenre(req, res) {
 }
 
 export function deleteGenre(req, res) {
-   
+
 }
