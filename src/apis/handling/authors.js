@@ -1,17 +1,33 @@
+import _ from "lodash"
+
 import { Author } from "../../models"
+import { standardizeResponseJSON } from "../../utils"
 
 export async function getAuthors(req, res) {
-    const authors = Author.findAll({
-        where: {}
+    const authors = await Author.findAll(req.query)
+    return res.status(200).send({
+       data: standardizeResponseJSON("author", authors)
     })
 }
 
-export function getAuthor(req, res) {
-
+export async function getAuthor(req, res) {
+    const id = req.params.id
+    const author = await Author.findOne({
+       where: {
+          id,
+          ...req.query
+       }
+    })
+    return res.status(200).send({
+       data: standardizeResponseJSON("author", author)
+    })
 }
 
-export function createAuthor(req, res) {
-
+export async function createAuthor(req, res) {
+    let newAuthor = await Genre.create(_.get(req.body, "data.attributes"), { raw: true, isNewRecord: true })
+    res.status(201).send({
+       data: standardizeResponseJSON("author", newAuthor.toJSON())
+    })
 }
 
 export function updateAuthor(req, res) {

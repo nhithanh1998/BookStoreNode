@@ -9,4 +9,52 @@ booksRouter.get("/", middlewares.modifyQueryParamsForGetMultipleInstances, books
 
 booksRouter.get("/:id", booksHandling.getBook)
 
-booksRouter.post("/", booksHandling.createBook)
+const expectedCreateInput = `{
+    data:{
+        type: String,
+        attributes: {
+            name: String,
+            authorId: UUID,
+            publisherId: UUID,
+            bookSize: String,
+            SKU: Maybe Boolean,
+            bookCoverType: String,
+            bookTotalPage: Integer,
+            description: Maybe String
+        }
+    }
+ }`
+
+const createInputFormat = {
+   data: {
+      type: "genre",
+      attributes: {
+         name: {
+            type: "String",
+            required: true
+         },
+         authorId: {
+            type: "UUID",
+            required: true
+         },
+         publisherId: {
+            type: "UUID",
+            required: true
+         },
+         bookSize: {
+            type: "String",
+            required: true
+         },
+         SKU: {
+            type: "Integer",
+            required: true
+         },
+         bookCoverType: {
+            type: "String",
+            required: true
+         }
+      }
+   }
+}
+
+booksRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat), booksHandling.createBook)

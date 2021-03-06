@@ -1,5 +1,7 @@
-export function modifyQueryParamsForGetMultipleInstances(req, _, next) {
-   query = _.defaults(req.query, { limit: 10, offset: 0 })
+import _ from "lodash"
+
+export function modifyQueryParamsForGetMultipleInstances(req, res, next) {
+   const query = _.defaults(req.query, { limit: 10, offset: 0 })
 
    req.query = {
       ..._.pick(query, ["limit", "offset"]),

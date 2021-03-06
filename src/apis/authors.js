@@ -9,4 +9,42 @@ authorsRouter.get("/", middlewares.modifyQueryParamsForGetMultipleInstances, aut
 
 authorsRouter.get("/:id", authorsHandling.getAuthor)
 
-authorsRouter.post("/", authorsHandling.createAuthor)
+const expectedCreateInput = `{
+    data:{
+        type: String,
+        attributes: {
+            name: String,
+            nationality: String,
+            gender: Maybe Boolean,
+            biography: Maybe String
+        }
+    }
+ }`
+
+const createInputFormat = {
+   data: {
+      type: "author",
+      attributes: {
+         name: {
+            type: "String",
+            required: true
+         },
+         nationality: {
+            type: "String",
+            required: true
+         },
+         gender: {
+            type: "Boolean",
+            required: false,
+            defaultValue: true
+         }, 
+         biography: {
+            type: "String",
+            required: false,
+            defaultValue: "No biography describe!"
+         }
+      }
+   }
+}
+
+authorsRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat),authorsHandling.createAuthor)

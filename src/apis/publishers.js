@@ -9,4 +9,25 @@ publishersRouter.get("/", middlewares.modifyQueryParamsForGetMultipleInstances, 
 
 publishersRouter.get("/:id", publisherHandling.getPublisher)
 
-publishersRouter.post("/", publisherHandling.createPublisher)
+const expectedCreateInput = `{
+    data:{
+        type: String,
+        attributes: {
+            name: String
+        }
+    }
+ }`
+
+const createInputFormat = {
+   data: {
+      type: "publisher",
+      attributes: {
+         name: {
+            type: "String",
+            required: true
+         }
+      }
+   }
+}
+
+publishersRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat),publisherHandling.createPublisher)

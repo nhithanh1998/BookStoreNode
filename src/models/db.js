@@ -18,12 +18,13 @@ export function initSequelize() {
 
    // init tables
    initAuthorModel(sequelize)
-   initBookModel(sequelize)
    initGenreModel(sequelize)
    initPublisherModel(sequelize)
+   initBookModel(sequelize)
+   initBookGenreModel(sequelize)
    initUserModel(sequelize)
    initWalletModel(sequelize)
-   initBookGenreModel(sequelize)
+
 
    // define table associations
    establishAuthorAssociations()
@@ -31,7 +32,7 @@ export function initSequelize() {
    establishGenreAssociations()
    establishPublisherAssociations()
    establishUserAssociations()
-   establishWalletAssociations
+   establishWalletAssociations()
 
    // sync all models
    // sequelize.sync({ force: true });

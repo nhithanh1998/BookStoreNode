@@ -32,8 +32,6 @@ function hashPasswordBeforeSave(user, options) {
    }
 }
 
-User.addHook("beforeSave", hashPasswordBeforeSave)
-
 export function initUserModel(sequelize) {
    User.init({
       id: {
@@ -72,6 +70,8 @@ export function initUserModel(sequelize) {
       timestamps: true,
       paranoid: true
    })
+
+   User.addHook("beforeSave", hashPasswordBeforeSave)
 }
 
 export function establishUserAssociations() {

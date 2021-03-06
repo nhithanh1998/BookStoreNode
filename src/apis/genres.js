@@ -9,4 +9,25 @@ genresRouter.get("/", middlewares.modifyQueryParamsForGetMultipleInstances, genr
 
 genresRouter.get("/:id", genresHandling.getGenre)
 
-genresRouter.post("/", genresHandling.createGenre)
+const expectedCreateInput = `{
+    data:{
+        type: String,
+        attributes: {
+            name: String
+        }
+    }
+ }`
+
+const createInputFormat = {
+   data: {
+      type: "genre",
+      attributes: {
+         name: {
+            type: "String",
+            required: true
+         }
+      }
+   }
+}
+
+genresRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat), genresHandling.createGenre)
