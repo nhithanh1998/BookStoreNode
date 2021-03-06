@@ -1,4 +1,4 @@
-import { Sequelize, Model } from "sequelize"
+import { Sequelize, DataTypes, Model } from "sequelize"
 
 import { Book, BookGenre } from "."
 
@@ -7,12 +7,12 @@ export class Genre extends Model {}
 export function initGenreModel(sequelize) {
    Genre.init({
       id: {
-         type: Sequelize.UUID,
+         type: DataTypes.UUID,
          defaultValue: Sequelize.UUIDV4,
          primaryKey: true
       },
       name: {
-         type: Sequelize.TEXT,
+         type: DataTypes.STRING,
          allowNull: false,
          unique: true
       }
@@ -21,7 +21,7 @@ export function initGenreModel(sequelize) {
       tableName: "genre",
       timestamps: true,
       paranoid: true
-   })   
+   })
 }
 
 export function establishGenreAssociations() {

@@ -1,4 +1,4 @@
-import { Sequelize, Model } from "sequelize"
+import { Sequelize, DataTypes, Model } from "sequelize"
 
 import { Book } from "."
 
@@ -7,12 +7,12 @@ export class Publisher extends Model {}
 export function initPublisherModel(sequelize) {
    Publisher.init({
       id: {
-         type: Sequelize.UUID,
-         default: Sequelize.UUIDV4,
+         type: DataTypes.UUID,
+         defaultValue: Sequelize.UUIDV4,
          primaryKey: true
       },
       name: {
-         type: Sequelize.STRING,
+         type: DataTypes.STRING,
          unique: true,
          allowNull: false
       }

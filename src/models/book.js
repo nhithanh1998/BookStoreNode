@@ -8,7 +8,7 @@ export function initBookModel(sequelize) {
    Book.init({
       id: {
          type: DataTypes.UUID,
-         default: Sequelize.UUIDV4,
+         defaultValue: Sequelize.UUIDV4,
          primaryKey: true,
          field: "id"
       },

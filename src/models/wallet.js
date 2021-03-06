@@ -8,7 +8,7 @@ export function initWalletModel(sequelize) {
    Wallet.init({
       id: {
          type: Sequelize.UUID,
-         default: Sequelize.UUIDV4,
+         defaultValue: Sequelize.UUIDV4,
          primaryKey: true
       }
    }, {

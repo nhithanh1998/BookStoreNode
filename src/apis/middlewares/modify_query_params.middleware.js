@@ -7,8 +7,8 @@ export function modifyQueryParamsForGetMultipleInstances(req, res, next) {
       ..._.pick(query, ["limit", "offset"]),
       where: {
          ..._.omit(query, ["limit", "offset"])
-      }
+      },
+      raw: true
    }
-
    next()
 }

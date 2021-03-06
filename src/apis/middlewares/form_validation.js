@@ -3,7 +3,7 @@ import _ from "lodash"
 
 export function validateInputValueBeforeCreate(expectedInput, createInputFormat) {
    return validateInputValueBeforeCreate[expectedInput] || (validateInputValueBeforeCreate[expectedInput] = function(req, res, next) {
-      if (typeCheck(expected, req.body)) {
+      if (typeCheck(expectedInput, req.body)) {
          next()
       } else {
          res.send({

@@ -36,7 +36,7 @@ export function initUserModel(sequelize) {
    User.init({
       id: {
          type: Sequelize.UUID,
-         default: Sequelize.UUIDV4,
+         defaultValue: Sequelize.UUIDV4,
          primaryKey: true,
          field: "id"
       },
