@@ -18,6 +18,22 @@ export function initBookModel(sequelize) {
          allowNull: false,
          field: "name"
       },
+      authorId: {
+         type: DataTypes.UUID,
+         references: {
+            model: Author,
+            key: "id"
+         },
+         field: "author_id"
+      },
+      publisherId: {
+         type: DataTypes.UUID,
+         references: {
+            model: Publisher,
+            key: "id"
+         },
+         field: "publisher_id"
+      },
       bookSize: {
          type: DataTypes.STRING,
          allowNull: false,
@@ -39,7 +55,7 @@ export function initBookModel(sequelize) {
          field: "book_total_page"
       },
       description: {
-         type: DataTypes.STRING,
+         type: DataTypes.TEXT,
          defaultValue: "No description!",
          field: "description"
       }

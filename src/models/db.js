@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize"
 
-import { initAuthorModel, establishAuthorAssociations } from "./author"
-import { initBookModel, establishBookAssociations } from "./book"
+import { initAuthorModel, establishAuthorAssociations, Author } from "./author"
+import { initBookModel, establishBookAssociations, Book } from "./book"
 import { initGenreModel, establishGenreAssociations } from "./genre"
 import { initPublisherModel, establishPublisherAssociations } from "./publisher"
 import { initUserModel, establishUserAssociations } from "./user"
@@ -35,6 +35,8 @@ export function initSequelize() {
    establishWalletAssociations()
 
    // sync all models
+   // Book.sync({ force: true })
+   // Author.sync({force: true})
    // sequelize.sync({ force: true });
    // console.log("sync complete")
 }

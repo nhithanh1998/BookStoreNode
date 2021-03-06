@@ -17,9 +17,9 @@ const expectedCreateInput = `{
             authorId: UUID,
             publisherId: UUID,
             bookSize: String,
-            SKU: Maybe Boolean,
+            SKU: Number,
             bookCoverType: String,
-            bookTotalPage: Integer,
+            bookTotalPage: Number,
             description: Maybe String
         }
     }
@@ -52,6 +52,14 @@ const createInputFormat = {
          bookCoverType: {
             type: "String",
             required: true
+         },
+         bookTotalPage: {
+            type: "Integer",
+            required: true
+         },
+         description: {
+            type: "String",
+            required: false
          }
       }
    }

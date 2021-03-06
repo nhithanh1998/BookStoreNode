@@ -29,7 +29,7 @@ export function initAuthorModel(sequelize) {
          field: "gender"
       },
       biography: {
-         type: DataTypes.STRING,
+         type: DataTypes.TEXT,
          defaultValue: "No biography describe!",
          field: "biography"
       }

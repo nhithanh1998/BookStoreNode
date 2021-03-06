@@ -24,7 +24,7 @@ export async function getAuthor(req, res) {
 }
 
 export async function createAuthor(req, res) {
-    let newAuthor = await Genre.create(_.get(req.body, "data.attributes"), { raw: true, isNewRecord: true })
+    let newAuthor = await Author.create(_.get(req.body, "data.attributes"), { isNewRecord: true })
     res.status(201).send({
        data: standardizeResponseJSON("author", newAuthor.toJSON())
     })

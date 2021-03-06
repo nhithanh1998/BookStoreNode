@@ -24,9 +24,9 @@ export async function getPublisher(req, res) {
 }
 
 export async function createPublisher(req, res) {
-   let newPublisher = await Publisher.create(_.get(req.body, "data.attributes"), { raw: true, isNewRecord: true })
+   let newPublisher = await Publisher.create(_.get(req.body, "data.attributes"), { isNewRecord: true })
    res.status(201).send({
-      data: standardizeResponseJSON("publisher", newPublisher)
+      data: standardizeResponseJSON("publisher", newPublisher.toJSON())
    })
 }
 

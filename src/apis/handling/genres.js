@@ -24,7 +24,7 @@ export async function getGenre(req, res) {
 }
 
 export async function createGenre(req, res) {
-   let newGenre = await Genre.create(_.get(req.body, "data.attributes"), { raw: true, isNewRecord: true })
+   let newGenre = await Genre.create(_.get(req.body, "data.attributes"), { isNewRecord: true })
    res.status(201).send({
       data: standardizeResponseJSON("genre", newGenre.toJSON())
    })
