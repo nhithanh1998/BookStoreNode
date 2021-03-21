@@ -16,6 +16,7 @@ const expectedCreateInput = `{
             name: String,
             authorId: UUID,
             publisherId: UUID,
+            genreIds: [UUID]
             bookSize: String,
             SKU: Number,
             bookCoverType: String,
@@ -39,6 +40,10 @@ const createInputFormat = {
          },
          publisherId: {
             type: "UUID",
+            required: true
+         },
+         genreIds: {
+            type: "[UUID]",
             required: true
          },
          bookSize: {
@@ -65,4 +70,9 @@ const createInputFormat = {
    }
 }
 
-booksRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat), booksHandling.createBook)
+booksRouter.post("/",
+   [
+      middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat),
+      middlewares.verifyResourceType("book")
+   ],
+   booksHandling.createBook)

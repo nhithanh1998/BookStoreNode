@@ -25,5 +25,5 @@ export function initGenreModel(sequelize) {
 }
 
 export function establishGenreAssociations() {
-   Genre.belongsToMany(Book, { through: BookGenre })
+   Genre.belongsToMany(Book, { through: BookGenre, foreignKey: "genre_id", sourceKey: "id" })
 }

@@ -19,7 +19,10 @@ const expectedCreateInput = `{
         type: String,
         attributes: {
             name: String,
-            authorId: UUID,
+            author: {
+               type: String,
+               id: UUID
+            },
             bookTotalPage: Number,
             bookSize: String,
             bookCoverType: String,

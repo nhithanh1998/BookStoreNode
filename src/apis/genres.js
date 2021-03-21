@@ -30,4 +30,9 @@ const createInputFormat = {
    }
 }
 
-genresRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat), genresHandling.createGenre)
+genresRouter.post("/",
+   [
+      middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat),
+      middlewares.verifyResourceType("genre")
+   ],
+   genresHandling.createGenre)

@@ -78,5 +78,5 @@ export function establishBookAssociations() {
       targetKey: "id",
       as: "publisher"
    })
-   Book.belongsToMany(Genre, { through: BookGenre })
+   Book.belongsToMany(Genre, { through: BookGenre, foreignKey: "book_id", sourceKey: "id"  })
 }

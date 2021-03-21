@@ -12,3 +12,14 @@ export function standardizeResponseJSON(type, object) {
       }
    }
 }
+
+export async function getNotExistIds(model, ids) {
+   const existIds = await model.findAll({
+      where: {
+         id: ids
+      },
+      attributes: ["id"],
+      raw: true
+   }).then(rs => rs.map(object => object.id))
+   return _.difference(ids, existIds)
+}

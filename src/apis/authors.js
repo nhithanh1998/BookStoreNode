@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import * as authorsHandling  from "./handling/authors"
+import * as authorsHandling from "./handling/authors"
 import * as middlewares from "./middlewares"
 
 export const authorsRouter = new Router()
@@ -37,7 +37,7 @@ const createInputFormat = {
             type: "Boolean",
             required: false,
             defaultValue: true
-         }, 
+         },
          biography: {
             type: "String",
             required: false,
@@ -47,4 +47,9 @@ const createInputFormat = {
    }
 }
 
-authorsRouter.post("/", middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat),authorsHandling.createAuthor)
+authorsRouter.post("/",
+   [
+      middlewares.validateInputValueBeforeCreate(expectedCreateInput, createInputFormat),
+      middlewares.verifyResourceType("author")
+   ],
+   authorsHandling.createAuthor)

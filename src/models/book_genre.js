@@ -16,14 +16,16 @@ export function initBookGenreModel(sequelize) {
          references: {
             model: Book,
             key: "id"
-         }
+         },
+         field: "book_id"
       },
       genreId: {
          type: Sequelize.UUID,
          references: {
             model: Genre,
             key: "id"
-         }
+         },
+         field: "genre_id"
       }
    }, {
       sequelize,

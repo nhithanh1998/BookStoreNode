@@ -2,11 +2,11 @@ import { Sequelize } from "sequelize"
 
 import { initAuthorModel, establishAuthorAssociations, Author } from "./author"
 import { initBookModel, establishBookAssociations, Book } from "./book"
-import { initGenreModel, establishGenreAssociations } from "./genre"
+import { initGenreModel, establishGenreAssociations, Genre } from "./genre"
 import { initPublisherModel, establishPublisherAssociations } from "./publisher"
 import { initUserModel, establishUserAssociations } from "./user"
 import { initWalletModel, establishWalletAssociations } from "./wallet"
-import { initBookGenreModel } from "./book_genre"
+import { BookGenre, initBookGenreModel } from "./book_genre"
 
 export function initSequelize() {
    console.log("start init")
@@ -36,6 +36,8 @@ export function initSequelize() {
 
    // sync all models
    // Book.sync({ force: true })
+   // Genre.sync({force: true})
+   // BookGenre.sync({ force: true})
    // Author.sync({force: true})
    // sequelize.sync({ force: true });
    // console.log("sync complete")
